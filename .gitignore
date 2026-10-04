@@ -1,0 +1,9 @@
+@"
+node_modules/
+coverage/
+.scannerwork/
+.env
+*.log
+AGENTS.md
+agents/
+"@ | Set-Content -Encoding ascii .gitignore
