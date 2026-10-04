@@ -1,0 +1,350 @@
+PASS tests/smoke.test.js
+  ÔêÜ logic.js exporta las funciones de logica del tablero Kanban (28 ms)
+
+FAIL tests/logic.test.js
+  esFechaISOValida
+    ÔêÜ UT-01 acepta una fecha futura con formato AAAA-MM-DD (21 ms)
+    ÔêÜ UT-02 acepta la fecha de hoy en formato AAAA-MM-DD
+    ÔêÜ UT-03 rechaza una fecha con formato DD-MM-AAAA
+    ├ù UT-04 rechaza una fecha que no existe en el calendario (4 ms)
+    ├ù UT-05 rechaza un mes fuera del rango v├ílido (2 ms)
+    ÔêÜ UT-06 rechaza una fecha con longitud incorrecta
+    ÔêÜ UT-07 rechaza null
+    ÔêÜ UT-08 rechaza undefined (1 ms)
+    ÔêÜ UT-09 rechaza un n├║mero (1 ms)
+  hoyISO
+    ÔêÜ UT-10 devuelve la fecha de hoy calculada en hora local
+    ÔêÜ UT-11 devuelve la fecha con el formato AAAA-MM-DD (1 ms)
+  sanitizarTexto
+    ÔêÜ UT-12 recorta los espacios del principio y del final (1 ms)
+    ÔêÜ UT-13 reduce los espacios internos repetidos a uno solo
+    ÔêÜ UT-14 elimina los caracteres de control
+    ÔêÜ UT-15 devuelve cadena vac├¡a con null
+    ÔêÜ UT-16 devuelve cadena vac├¡a con undefined
+    ÔêÜ UT-17 conserva las tildes y la letra ├▒ (1 ms)
+    ÔêÜ UT-18 conserva los emojis
+    ÔêÜ UT-19 conserva los caracteres especiales < > & y las comillas
+    ÔêÜ UT-20 conserva un n├║mero negativo escrito como texto (1 ms)
+  generarId
+    ÔêÜ UT-21 devuelve un identificador no vac├¡o
+    ÔêÜ UT-22 devuelve identificadores distintos en llamadas consecutivas (1 ms)
+    ÔêÜ UT-23 el identificador no contiene espacios
+  formatearFecha
+    ÔêÜ UT-24 formatea una fecha v├ílida como DD/MM/AAAA (1 ms)
+    ├ù UT-25 devuelve "Sin fecha" con una fecha que no existe (2 ms)
+    ÔêÜ UT-26 devuelve "Sin fecha" con una fecha mal formada
+    ÔêÜ UT-27 devuelve "Sin fecha" con null (1 ms)
+  contarPorEstado
+    ÔêÜ UT-28 cuenta cero tareas en una lista vac├¡a
+    ÔêÜ UT-29 cuenta las tareas en estado pendiente (1 ms)
+    ÔêÜ UT-30 cuenta las tareas en estado en_proceso
+    ÔêÜ UT-31 cuenta las tareas en estado completado
+    ÔêÜ UT-32 devuelve cero para un estado inexistente (1 ms)
+    ÔêÜ UT-33 devuelve cero cuando recibe null (1 ms)
+  puedeMoverAEnProceso
+    ÔêÜ UT-34 permite mover con 0 tareas en proceso (1 ms)
+    ÔêÜ UT-35 permite mover con 1 tarea en proceso (1 ms)
+    ÔêÜ UT-36 permite mover con 2 tareas en proceso (1 ms)
+    ├ù UT-37 no permite mover con 3 tareas en proceso (1 ms)
+    ÔêÜ UT-38 no permite mover con 4 tareas en proceso
+    ├ù UT-39 el error menciona el l├¡mite m├íximo de 3 tareas (1 ms)
+    ÔêÜ UT-40 ignora las tareas de otros estados al contar (1 ms)
+    ÔêÜ UT-41 trata una lista vac├¡a como 0 tareas en proceso (1 ms)
+    ÔêÜ UT-42 no lanza error cuando recibe null
+  validarTarea
+    ÔêÜ UT-43 acepta una tarea completa con fecha de entrega futura (1 ms)
+    ├ù UT-44 acepta fecha de entrega hoy
+    ÔêÜ UT-45 acepta fecha de entrega ma├▒ana
+    ÔêÜ UT-46 rechaza fecha de entrega de ayer
+    ÔêÜ UT-47 el error por fecha de ayer menciona que no puede ser anterior a hoy (1 ms)
+    ÔêÜ UT-48 acepta un t├¡tulo de 79 caracteres
+    ÔêÜ UT-49 acepta un t├¡tulo de 80 caracteres (1 ms)
+    ÔêÜ UT-50 rechaza un t├¡tulo de 81 caracteres
+    ÔêÜ UT-51 el error de t├¡tulo menciona la palabra t├¡tulo (1 ms)
+    ÔêÜ UT-52 rechaza un t├¡tulo vac├¡o
+    ÔêÜ UT-53 rechaza un t├¡tulo formado solo por espacios (1 ms)
+    ÔêÜ UT-54 rechaza un t├¡tulo undefined
+    ÔêÜ UT-55 rechaza una materia vac├¡a
+    ÔêÜ UT-56 el error de materia menciona la palabra materia
+    ÔêÜ UT-57 rechaza una fecha de entrega con formato DD-MM-AAAA
+    ÔêÜ UT-58 el error de fecha inv├ílida menciona la palabra v├ílido (1 ms)
+    ÔêÜ UT-59 rechaza una fecha de entrega num├®rica negativa
+    ÔêÜ UT-60 rechaza null (1 ms)
+    ÔêÜ UT-61 rechaza undefined
+    ÔêÜ UT-62 acepta un t├¡tulo con caracteres especiales, tildes y emojis
+    ÔêÜ UT-63 devuelve el t├¡tulo normalizado sin espacios sobrantes (1 ms)
+  crearTarea
+    ÔêÜ UT-64 crea la tarea en estado pendiente
+    ÔêÜ UT-65 genera un identificador para la tarea creada
+    ÔêÜ UT-66 registra la fecha de creaci├│n de la tarea (1 ms)
+    ÔêÜ UT-67 inicia la fecha de finalizaci├│n en null (1 ms)
+    ÔêÜ UT-68 a├▒ade la tarea nueva a la lista (1 ms)
+    ÔêÜ UT-69 devuelve la lista ordenada por fecha de entrega (1 ms)
+    ÔêÜ UT-70 no modifica la lista original (1 ms)
+    ÔêÜ UT-71 no crea la tarea si la validaci├│n falla
+    ÔêÜ UT-72 devuelve los errores de validaci├│n (1 ms)
+    ÔêÜ UT-73 crea la tarea cuando la lista actual est├í vac├¡a (1 ms)
+    ÔêÜ UT-74 crea la tarea cuando no se pasa lista actual
+    ÔêÜ UT-75 normaliza el t├¡tulo con espacios sobrantes (1 ms)
+    ÔêÜ UT-76 conserva tildes, ├▒ y emojis en el t├¡tulo (1 ms)
+  moverTarea
+    ÔêÜ UT-77 mueve una tarea de pendiente a en proceso
+    ÔêÜ UT-78 mueve una tarea de en proceso a completado (1 ms)
+    ÔêÜ UT-79 mueve una tarea de completado a pendiente (1 ms)
+    ÔêÜ UT-80 registra la fecha y hora de finalizaci├│n al completar (1 ms)
+    ÔêÜ UT-81 no vuelve a registrar la fecha de finalizaci├│n si ya estaba completada
+    ├ù UT-82 no cambia el estado si el movimiento falla (1 ms)
+    ÔêÜ UT-83 no modifica la lista original (1 ms)
+    ÔêÜ UT-84 permite entrar en en proceso con 2 tareas en proceso
+    ├ù UT-85 no permite entrar en en proceso con 3 tareas en proceso (1 ms)
+    ÔêÜ UT-86 no permite entrar en en proceso con 4 tareas en proceso
+    ├ù UT-87 el error de l├¡mite menciona la columna En Proceso (1 ms)
+    ÔêÜ UT-88 permite mover a pendiente una tarea con 3 tareas en proceso (1 ms)
+    ÔêÜ UT-89 permite mover dentro de en proceso cuando ya hay 3 tareas
+    ÔêÜ UT-90 devuelve error si el identificador no existe (1 ms)
+    ÔêÜ UT-91 rechaza un estado de destino no v├ílido (1 ms)
+    ÔêÜ UT-92 el error de destino no v├ílido menciona la palabra v├ílido (1 ms)
+    ÔêÜ UT-93 completa una tarea con fecha de entrega vencida
+  eliminarTarea
+    ÔêÜ UT-94 elimina la tarea existente (1 ms)
+    ÔêÜ UT-95 conserva el resto de tareas de la lista
+    ÔêÜ UT-96 devuelve error si el identificador no existe (1 ms)
+    ÔêÜ UT-97 no modifica la lista original (1 ms)
+    ÔêÜ UT-98 devuelve error al eliminar de una lista vac├¡a
+    ÔêÜ UT-99 elimina solo la tarea indicada entre tareas de la misma materia
+  fechaVencida
+    ÔêÜ UT-100 marca como vencida una tarea pendiente con fecha de ayer (1 ms)
+    ÔêÜ UT-101 no marca como vencida una tarea con fecha de hoy
+    ÔêÜ UT-102 no marca como vencida una tarea con fecha de ma├▒ana
+    ÔêÜ UT-103 no marca como vencida una tarea en proceso con fecha de ma├▒ana
+    ├ù UT-104 no marca como vencida una tarea completada con fecha de ayer (1 ms)
+    ÔêÜ UT-105 marca como vencida una tarea con fecha lejana pasada
+    ├ù UT-106 no marca como vencida una tarea con fecha inv├ílida
+    ÔêÜ UT-107 no marca como vencida con null
+    ÔêÜ UT-108 no marca como vencida con undefined
+  resumenTareas
+    ÔêÜ UT-109 cuenta el total de tareas (1 ms)
+    ÔêÜ UT-110 cuenta las tareas pendientes
+    ÔêÜ UT-111 cuenta las tareas en proceso (1 ms)
+    ÔêÜ UT-112 cuenta las tareas completadas
+    ├ù UT-113 cuenta solo las tareas vencidas (1 ms)
+    ÔêÜ UT-114 devuelve todos los contadores a cero con lista vac├¡a
+    ÔêÜ UT-115 devuelve los contadores a cero con null (1 ms)
+    ÔêÜ UT-116 el total coincide con la suma de los tres estados
+  ordenarPorEntrega
+    ÔêÜ UT-117 ordena por fecha de entrega ascendente
+    ÔêÜ UT-118 mantiene el orden cuando todas las fechas son iguales (1 ms)
+    ÔêÜ UT-119 no modifica el array original
+    ÔêÜ UT-120 devuelve un array vac├¡o con una lista vac├¡a (1 ms)
+    ÔêÜ UT-121 devuelve un array vac├¡o con null
+    ÔêÜ UT-122 ordena una lista de cuatro tareas con fechas distintas
+
+  ÔùÅ esFechaISOValida ÔÇ║ UT-04 rechaza una fecha que no existe en el calendario
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      104 |
+      105 |   it('UT-04 rechaza una fecha que no existe en el calendario', () => {
+    > 106 |     expect(esFechaISOValida(FECHA_FUERA_DE_CALENDARIO)).toBe(false);
+          |                                                         ^
+      107 |   });
+      108 |
+      109 |   it('UT-05 rechaza un mes fuera del rango v├ílido', () => {
+
+      at Object.toBe (tests/logic.test.js:106:57)
+
+  ÔùÅ esFechaISOValida ÔÇ║ UT-05 rechaza un mes fuera del rango v├ílido
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      108 |
+      109 |   it('UT-05 rechaza un mes fuera del rango v├ílido', () => {
+    > 110 |     expect(esFechaISOValida(FECHA_MES_INEXISTENTE)).toBe(false);
+          |                                                     ^
+      111 |   });
+      112 |
+      113 |   it('UT-06 rechaza una fecha con longitud incorrecta', () => {
+
+      at Object.toBe (tests/logic.test.js:110:53)
+
+  ÔùÅ formatearFecha ÔÇ║ UT-25 devuelve "Sin fecha" con una fecha que no existe
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "Sin fecha"
+    Received: "31/04/2026"
+
+      196 |
+      197 |   it('UT-25 devuelve "Sin fecha" con una fecha que no existe', () => {
+    > 198 |     expect(formatearFecha(FECHA_FUERA_DE_CALENDARIO)).toBe('Sin fecha');
+          |                                                       ^
+      199 |   });
+      200 |
+      201 |   it('UT-26 devuelve "Sin fecha" con una fecha mal formada', () => {
+
+      at Object.toBe (tests/logic.test.js:198:55)
+
+  ÔùÅ puedeMoverAEnProceso ÔÇ║ UT-37 no permite mover con 3 tareas en proceso
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      255 |
+      256 |   it('UT-37 no permite mover con 3 tareas en proceso', () => {
+    > 257 |     expect(puedeMoverAEnProceso(listaEnProceso(3)).ok).toBe(false);
+          |                                                        ^
+      258 |   });
+      259 |
+      260 |   it('UT-38 no permite mover con 4 tareas en proceso', () => {
+
+      at Object.toBe (tests/logic.test.js:257:56)
+
+  ÔùÅ puedeMoverAEnProceso ÔÇ║ UT-39 el error menciona el l├¡mite m├íximo de 3 tareas
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /m├íximo\s+3/i
+    Received string:  ""
+
+      263 |
+      264 |   it('UT-39 el error menciona el l├¡mite m├íximo de 3 tareas', () => {
+    > 265 |     expect(puedeMoverAEnProceso(listaEnProceso(3)).errores.join(' ')).toMatch(/m├íximo\s+3/i);
+          |                                                                       ^
+      266 |   });
+      267 |
+      268 |   it('UT-40 ignora las tareas de otros estados al contar', () => {
+
+      at Object.toMatch (tests/logic.test.js:265:71)
+
+  ÔùÅ validarTarea ÔÇ║ UT-44 acepta fecha de entrega hoy
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      290 |
+      291 |   it('UT-44 acepta fecha de entrega hoy', () => {
+    > 292 |     expect(validarTarea(datosTarea({ fechaEntrega: HOY })).ok).toBe(true);
+          |                                                                ^
+      293 |   });
+      294 |
+      295 |   it('UT-45 acepta fecha de entrega ma├▒ana', () => {
+
+      at Object.toBe (tests/logic.test.js:292:64)
+
+  ÔùÅ moverTarea ÔÇ║ UT-82 no cambia el estado si el movimiento falla
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      473 |   it('UT-82 no cambia el estado si el movimiento falla', () => {
+      474 |     const lista = listaEnProceso(3).concat([tareaEnLista('P-1', 'pendiente', MANANA)]);
+    > 475 |     expect(moverTarea(lista, 'P-1', 'en_proceso').ok).toBe(false);
+          |                                                       ^
+      476 |   });
+      477 |
+      478 |   it('UT-83 no modifica la lista original', () => {
+
+      at Object.toBe (tests/logic.test.js:475:55)
+
+  ÔùÅ moverTarea ÔÇ║ UT-85 no permite entrar en en proceso con 3 tareas en proceso
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      489 |   it('UT-85 no permite entrar en en proceso con 3 tareas en proceso', () => {
+      490 |     const lista = listaEnProceso(3).concat([tareaEnLista('P-1', 'pendiente', MANANA)]);
+    > 491 |     expect(moverTarea(lista, 'P-1', 'en_proceso').ok).toBe(false);
+          |                                                       ^
+      492 |   });
+      493 |
+      494 |   it('UT-86 no permite entrar en en proceso con 4 tareas en proceso', () => {
+
+      at Object.toBe (tests/logic.test.js:491:55)
+
+  ÔùÅ moverTarea ÔÇ║ UT-87 el error de l├¡mite menciona la columna En Proceso
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /En Proceso/
+    Received string:  ""
+
+      499 |   it('UT-87 el error de l├¡mite menciona la columna En Proceso', () => {
+      500 |     const lista = listaEnProceso(3).concat([tareaEnLista('P-1', 'pendiente', MANANA)]);
+    > 501 |     expect(moverTarea(lista, 'P-1', 'en_proceso').errores.join(' ')).toMatch(/En Proceso/);
+          |                                                                      ^
+      502 |   });
+      503 |
+      504 |   it('UT-88 permite mover a pendiente una tarea con 3 tareas en proceso', () => {
+
+      at Object.toMatch (tests/logic.test.js:501:70)
+
+  ÔùÅ fechaVencida ÔÇ║ UT-104 no marca como vencida una tarea completada con fecha de ayer
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      590 |
+      591 |   it('UT-104 no marca como vencida una tarea completada con fecha de ayer', () => {
+    > 592 |     expect(fechaVencida(tareaEnLista('C-1', 'completado', AYER))).toBe(false);
+          |                                                                   ^
+      593 |   });
+      594 |
+      595 |   it('UT-105 marca como vencida una tarea con fecha lejana pasada', () => {
+
+      at Object.toBe (tests/logic.test.js:592:67)
+
+  ÔùÅ fechaVencida ÔÇ║ UT-106 no marca como vencida una tarea con fecha inv├ílida
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      598 |
+      599 |   it('UT-106 no marca como vencida una tarea con fecha inv├ílida', () => {
+    > 600 |     expect(fechaVencida(tareaEnLista('P-1', 'pendiente', FECHA_FUERA_DE_CALENDARIO))).toBe(false);
+          |                                                                                       ^
+      601 |   });
+      602 |
+      603 |   it('UT-107 no marca como vencida con null', () => {
+
+      at Object.toBe (tests/logic.test.js:600:87)
+
+  ÔùÅ resumenTareas ÔÇ║ UT-113 cuenta solo las tareas vencidas
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 2
+
+      635 |
+      636 |   it('UT-113 cuenta solo las tareas vencidas', () => {
+    > 637 |     expect(resumenTareas(lista).vencidas).toBe(1);
+          |                                           ^
+      638 |   });
+      639 |
+      640 |   it('UT-114 devuelve todos los contadores a cero con lista vac├¡a', () => {
+
+      at Object.toBe (tests/logic.test.js:637:43)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       12 failed, 111 passed, 123 total
+Snapshots:   0 total
+Time:        2.38 s, estimated 3 s
+Ran all test suites.
