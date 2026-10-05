@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist de pruebas - Tablero Kanban</title>
+  <style>
+    @page { size: A4; margin: 16mm; }
+    body { font-family: Arial, sans-serif; color: #1f2933; font-size: 10pt; }
+    h1 { color: #2456bd; margin-bottom: 4px; }
+    h2 { color: #2456bd; border-bottom: 1px solid #dfe4ec; padding-bottom: 4px; margin-top: 20px; }
+    .meta { color: #56616f; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
+    th { background: #2456bd; color: white; text-align: left; }
+    th, td { border: 1px solid #bfc8d4; padding: 6px; vertical-align: top; }
+    .pass { color: #176b49; font-weight: bold; }
+    .fail { color: #a12222; font-weight: bold; }
+    .note { background: #f4f6fb; border-left: 4px solid #f0b429; padding: 8px; }
+    .summary { display: flex; gap: 18px; margin: 10px 0; }
+    .summary span { padding: 7px 10px; border-radius: 4px; background: #f4f6fb; }
+    .small { font-size: 9pt; }
+  </style>
+</head>
+<body>
+  <h1>Checklist de pruebas - Tablero Kanban</h1>
+  <div class="meta">
+    Proyecto: Gestor de Tareas y Proyectos Academicos<br>
+    Fecha de verificacion: 5 de octubre de 2026<br>
+    Alcance: verificacion manual de la interfaz y pruebas automaticas Jest
+  </div>
+
+  <div class="note">
+    Los resultados reflejan el estado actual del proyecto. Las fallas se conservan como
+    evidencia real para corregirlas posteriormente; Docker ejecutara estas mismas pruebas,
+    pero no modifica el resultado del codigo.
+  </div>
+
+  <h2>1. Checklist funcional</h2>
+  <table>
+    <tr><th>ID</th><th>Requerimiento</th><th>Estado</th><th>Observacion / evidencia</th></tr>
+    <tr><td>REQ-01</td><td>La aplicacion abre y muestra el tablero.</td><td class="pass">PASA</td><td>La interfaz se abrio desde src/index.html.</td></tr>
+    <tr><td>REQ-02</td><td>Permite crear una tarea con datos validos.</td><td class="pass">PASA</td><td>La tarea se crea y aparece en el tablero.</td></tr>
+    <tr><td>REQ-03</td><td>La tarea nueva aparece en Pendiente.</td><td class="pass">PASA</td><td>El estado inicial es pendiente.</td></tr>
+    <tr><td>REQ-04</td><td>Rechaza un titulo vacio.</td><td class="pass">PASA</td><td>validarTarea devuelve error.</td></tr>
+    <tr><td>REQ-05</td><td>Rechaza una materia vacia.</td><td class="pass">PASA</td><td>validarTarea devuelve error.</td></tr>
+    <tr><td>REQ-06</td><td>Rechaza una fecha invalida.</td><td class="fail">FALLA</td><td>La expresion regular acepta fechas imposibles como 2026-04-31.</td></tr>
+    <tr><td>REQ-07</td><td>Permite hoy y rechaza fechas anteriores.</td><td class="fail">FALLA</td><td>El codigo rechaza hoy, aunque la regla solo indica que no debe ser anterior.</td></tr>
+    <tr><td>REQ-08</td><td>Ordena tareas por fecha de entrega.</td><td class="pass">PASA</td><td>ordenarPorEntrega ordena ascendentemente.</td></tr>
+    <tr><td>REQ-09</td><td>Permite mover una tarea a En Proceso.</td><td class="pass">PASA</td><td>La accion Iniciar cambia el estado.</td></tr>
+    <tr><td>REQ-10</td><td>No permite mas de tres tareas en En Proceso.</td><td class="fail">FALLA</td><td>La implementacion actual permite una cuarta tarea por un error de limite.</td></tr>
+    <tr><td>REQ-11</td><td>Permite completar una tarea.</td><td class="pass">PASA</td><td>La accion Completar cambia el estado a completado.</td></tr>
+    <tr><td>REQ-12</td><td>Guarda fecha y hora al completar.</td><td class="pass">PASA</td><td>fechaFinalizacion se registra automaticamente.</td></tr>
+    <tr><td>REQ-13</td><td>Permite retroceder una tarea.</td><td class="pass">PASA</td><td>Retroceder devuelve la tarea a pendiente.</td></tr>
+    <tr><td>REQ-14</td><td>Permite eliminar una tarea.</td><td class="pass">PASA</td><td>La tarea se elimina de la lista.</td></tr>
+    <tr><td>REQ-15</td><td>Actualiza el resumen.</td><td class="pass">PASA</td><td>Se actualizan total, estados y vencidas.</td></tr>
+    <tr><td>REQ-16</td><td>Guarda las tareas en localStorage.</td><td class="pass">PASA</td><td>Se encontro la clave tableroKanban.tareas.</td></tr>
+    <tr><td>REQ-17</td><td>Conserva tareas al recargar.</td><td class="pass">PASA</td><td>Las tareas se cargan nuevamente desde localStorage.</td></tr>
+  </table>
+
+  <h2>2. Checklist de calidad de codigo</h2>
+  <table>
+    <tr><th>Criterio</th><th>Estado</th><th>Observacion</th></tr>
+    <tr><td>Legibilidad</td><td class="pass">PASA</td><td>Funciones pequenas y nombres descriptivos.</td></tr>
+    <tr><td>Estructura logica vs. interfaz</td><td class="pass">PASA</td><td>La logica esta separada en logic.js.</td></tr>
+    <tr><td>Manejo de errores</td><td class="fail">FALLA</td><td>Hay capturas vacias al leer localStorage y JSON.</td></tr>
+    <tr><td>Seguridad basica</td><td class="fail">FALLA</td><td>La interfaz inserta algunos datos con innerHTML sin escape.</td></tr>
+    <tr><td>Consistencia de nombres</td><td class="pass">PASA</td><td>Los nombres siguen el dominio de la aplicacion.</td></tr>
+    <tr><td>Duplicacion</td><td class="pass">PASA</td><td>No se observo duplicacion relevante en la revision.</td></tr>
+    <tr><td>Comentarios utiles</td><td class="pass">PASA</td><td>La logica es entendible sin comentarios extensos.</td></tr>
+    <tr><td>Uso de const/let</td><td class="fail">FALLA</td><td>El codigo usa var de forma generalizada.</td></tr>
+  </table>
+
+  <h2>3. Resultado de pruebas automaticas</h2>
+  <table>
+    <tr><th>Suite</th><th>Resultado</th><th>Detalle</th></tr>
+    <tr><td>tests/smoke.test.js</td><td class="pass">PASA</td><td>La logica se puede importar.</td></tr>
+    <tr><td>tests/logic.test.js</td><td class="fail">FALLA</td><td>12 casos fallan.</td></tr>
+    <tr><td>Total</td><td class="fail">PARCIAL</td><td>111 pasaron, 12 fallaron, 123 pruebas totales.</td></tr>
+  </table>
+
+  <h2>4. Como reproducir</h2>
+  <p class="small">
+    Desde PowerShell, en la carpeta TableroKanban:
+  </p>
+  <pre>docker compose build
+docker compose run --rm unit-tests</pre>
+  <p class="small">
+    La evidencia manual se obtuvo desde src/index.html y la clave localStorage
+    tableroKanban.tareas.
+  </p>
+</body>
+</html>
